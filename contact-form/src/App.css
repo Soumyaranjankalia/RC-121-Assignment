@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+  background-color: black;
+  /* margin-top: -5rem; */
+  height: 51rem;
+}
+.App-two{
+  /* border: 2px solid red; */
+  width: 40rem;
+  height: 51rem;
+  margin-left: 25rem;
+  background-color: white;
+}
+
+
+
+
