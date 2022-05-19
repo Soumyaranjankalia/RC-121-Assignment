@@ -1,10 +1,32 @@
-import React, { useState } from "react";
-import data from "./data.json";
+import React, { useEffect, useState } from "react";
 import ResturantCard from "./ResturantCard";
+import ResturantForm from "./ResturantForm";
 
 export default function ResturantDetails() {
-  const [ResturantDetails, setResturantDetails] = useState(data);
-  const [newResturantDetails, setNewResturantDetails] = useState(data);
+  const [ResturantDetails, setResturantDetails] = useState([]);
+  const [newResturantDetails, setNewResturantDetails] = useState([]);
+
+  useEffect(()=>{
+    getResturantData()
+  },[])
+
+  const getResturantData = async() =>{
+    let res = await fetch("http://localhost:8080/resturants")
+    let data = await res.json()
+    console.log(data)
+    setNewResturantDetails(data)
+    setResturantDetails(data)
+  }
+
+  const handelSubmit = async(Formdata) => {
+    let res=await fetch("http://localhost:8080/resturants", {
+      method: "POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(Formdata)
+    })
+    let data = await res.json()
+    console.log(data)
+  }
 
   const oneStar = () => {
     const filterData = ResturantDetails.filter((e) => {
@@ -98,6 +120,7 @@ export default function ResturantDetails() {
 
   return (
     <div>
+      <ResturantForm handelSubmit={handelSubmit}/>
       {newResturantDetails.map((e) => {
         return (
           <ResturantCard

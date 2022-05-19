@@ -1,7 +1,9 @@
 import React from "react";
+import "./Resturant.css"
 
 export default function ResturantCard(props) {
   const {
+    id,
     restaurant_name,
     card_image,
     dish_name,
@@ -9,15 +11,15 @@ export default function ResturantCard(props) {
     total_votes,
     rating,
     reviews,
-    id,
+    
   } = props;
 
   return (
-    <div>
+    <div className="container">
       <div>
         <h1>{restaurant_name}</h1>
       </div>
-      <div>
+      <div className="image-name">
         <img src={card_image} alt="" />
       </div>
       <div>
